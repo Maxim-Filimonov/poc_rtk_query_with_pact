@@ -6,8 +6,10 @@ const customBaseQuery = async (
   {signal, dispatch, getState},
   extraOptions,
 ) => {
+  const url = getState().config.url;
+  console.log('URL:::', url);
   console.log('ARGS:::', args);
-  const request = await fetch('https://pokeapi.co/api/v2/' + '/' + args);
+  const request = await fetch(url + '/' + args);
   // get json body from fetch
   const json = await request.json();
   return {

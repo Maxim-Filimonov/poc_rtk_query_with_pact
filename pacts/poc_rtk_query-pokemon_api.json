@@ -1,0 +1,39 @@
+{
+  "consumer": {
+    "name": "poc_rtk_query"
+  },
+  "interactions": [
+    {
+      "description": "a request for a pokemon by name",
+      "request": {
+        "method": "GET",
+        "path": "/pokemon/bulbasaur"
+      },
+      "response": {
+        "body": {
+          "height": 7,
+          "name": "bulbasaur"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "10.1.4"
+    },
+    "pactRust": {
+      "ffi": "0.3.12",
+      "models": "0.4.5"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "pokemon_api"
+  }
+}
