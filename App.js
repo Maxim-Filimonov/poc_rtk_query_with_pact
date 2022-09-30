@@ -27,6 +27,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import GraphqlView from './GraphqlView';
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
@@ -77,6 +78,7 @@ const App: () => Node = () => {
         </ScrollView>
         <View>
           <RestView />
+          <GraphqlView />
         </View>
       </SafeAreaView>
     </Provider>

@@ -57,3 +57,4 @@ export const api = createApi({
     }),
   }),
 });
+export const {useGetPostsQuery, useGetPostQuery} = api;
