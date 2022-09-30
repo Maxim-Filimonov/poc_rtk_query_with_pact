@@ -14,6 +14,7 @@
     "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.5",
     "abortcontroller-polyfill": "^1.7.3",
+    "graphql-request": "^5.0.0",
     "react": "18.1.0",
     "react-native": "0.70.1",
     "react-redux": "^8.0.4"
@@ -36,6 +37,8 @@
       "@testing-library/jest-dom",
       "./jest.setup.js"
     ],
-    "modulePathIgnorePatterns": ["pacts"]
+    "modulePathIgnorePatterns": [
+      "pacts"
+    ]
   }
 }

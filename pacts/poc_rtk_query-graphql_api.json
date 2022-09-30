@@ -1,0 +1,67 @@
+{
+  "consumer": {
+    "name": "poc_rtk_query"
+  },
+  "interactions": [
+    {
+      "description": "a request for posts",
+      "request": {
+        "body": {
+          "query": "\n  query {\n    posts {\n      data {\n        id\n        title\n      }\n    }\n  }\n"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$.query": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "\\s*query\\s*\\{\\s*posts\\s*\\{\\s*data\\s*\\{\\s*id\\s*title\\s*\\}\\s*\\}\\s*\\}\\s*"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "method": "POST",
+        "path": "/"
+      },
+      "response": {
+        "body": {
+          "data": {
+            "posts": {
+              "data": [
+                {
+                  "id": "213",
+                  "title": "test"
+                }
+              ]
+            }
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "10.1.4"
+    },
+    "pactRust": {
+      "ffi": "0.3.12",
+      "models": "0.4.5"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "graphql_api"
+  }
+}
