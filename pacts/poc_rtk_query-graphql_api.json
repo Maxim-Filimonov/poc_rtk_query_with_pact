@@ -4,6 +4,47 @@
   },
   "interactions": [
     {
+      "description": "a request for a post by id",
+      "request": {
+        "body": {
+          "query": "\n        query {\n          post(id: 2) {\n            id\n            title\n            body\n          }\n        }\n        "
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$.query": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "\\s*query\\s*\\{\\s*post\\(id:\\s*2\\)\\s*\\{\\s*id\\s*title\\s*body\\s*\\}\\s*\\}\\s*"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "method": "POST",
+        "path": "/"
+      },
+      "response": {
+        "body": {
+          "data": {
+            "post": {
+              "id": "2",
+              "title": "test"
+            }
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "status": 200
+      }
+    },
+    {
       "description": "a request for posts",
       "request": {
         "body": {

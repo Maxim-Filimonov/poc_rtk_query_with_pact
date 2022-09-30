@@ -1,8 +1,7 @@
 import {store} from './store';
-import {api, getPostsQuery} from './graphqlApi';
+import {api, getPostByIdQuery, getPostsQuery} from './graphqlApi';
 import {PactV3} from '@pact-foundation/pact';
 import {setGqlUrl} from './config.slice';
-import {print} from 'graphql';
 import {mockGqlQuery} from './gql_pact_utils';
 
 const provider = new PactV3({
@@ -31,5 +30,25 @@ it('can query posts', async () => {
     const result = await store.dispatch(api.endpoints.getPosts.initiate());
 
     expect(result.data.length).toBeGreaterThan(0);
+  });
+});
+it('can make a query with id', async () => {
+  const postId = '2';
+  provider.addInteraction(
+    mockGqlQuery({
+      interactionDescription: 'a request for a post by id',
+      query: getPostByIdQuery(postId),
+      respondWith: {
+        post: {
+          id: postId,
+          title: 'test',
+        },
+      },
+    }),
+  );
+  return provider.executeTest(async mockServer => {
+    store.dispatch(setGqlUrl(mockServer.url));
+    const result = await store.dispatch(api.endpoints.getPost.initiate(postId));
+    expect(result.data.title).toEqual('test');
   });
 });

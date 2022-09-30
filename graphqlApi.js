@@ -30,6 +30,16 @@ export const getPostsQuery = gql`
     }
   }
 `;
+export const getPostByIdQuery = id => gql`
+        query {
+          post(id: ${id}) {
+            id
+            title
+            body
+          }
+        }
+        `;
+
 export const api = createApi({
   baseQuery: graphqlBaseQuery,
   endpoints: builder => ({
@@ -41,15 +51,7 @@ export const api = createApi({
     }),
     getPost: builder.query({
       query: id => ({
-        body: gql`
-        query {
-          post(id: ${id}) {
-            id
-            title
-            body
-          }
-        }
-        `,
+        body: getPostByIdQuery(id),
       }),
       transformResponse: response => response.post,
     }),
