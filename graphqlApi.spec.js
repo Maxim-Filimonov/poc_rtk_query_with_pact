@@ -52,3 +52,13 @@ it('can make a query with id', async () => {
     expect(result.data.title).toEqual('test');
   });
 });
+
+it('caches query for second request with same parameters', async () => {
+  const postId = '2';
+
+  // we don't need to add an interaction as rtk query cache
+  // takes over before making request to server
+  const result = await store.dispatch(api.endpoints.getPost.initiate(postId));
+
+  expect(result.data.title).toEqual('test');
+});
