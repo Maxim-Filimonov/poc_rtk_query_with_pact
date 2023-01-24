@@ -26,13 +26,7 @@ it('can make a request', () => {
   return provider.executeTest(async mockServer => {
     store.dispatch(setUrl(mockServer.url));
     const result = await store.dispatch(
-      pokemonApi.endpoints.getPokemonByName.initiate(
-        'bulbasaur',
-        mockServer.url,
-      ),
-      {
-        track: true,
-      },
+      pokemonApi.endpoints.getPokemonByName.initiate('bulbasaur'),
     );
 
     expect(result.data.height).toEqual(7);

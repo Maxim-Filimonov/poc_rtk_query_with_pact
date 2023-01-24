@@ -1,11 +1,7 @@
-import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
+import {createApi} from '@reduxjs/toolkit/query/react';
 import fetch from 'cross-fetch';
 // Define a service using a base URL and expected endpoints
-const customBaseQuery = async (
-  args,
-  {signal, dispatch, getState},
-  extraOptions,
-) => {
+const customBaseQuery = async (args: string, {getState}: {getState: any}) => {
   const url = getState().config.url;
   console.log('URL:::', url);
   console.log('ARGS:::', args);
